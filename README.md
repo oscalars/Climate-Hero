@@ -1,3 +1,3 @@
 # naboo
 
-![alt text](https://static.wikia.nocookie.net/starwars/images/f/f0/Naboo_planet.png/revision/latest?cb=20190210065915)
+![alt text](https://lumiere-a.akamaihd.net/v1/images/databank_naboon1starfighter_01_169_26691adf.jpeg?region=0%2C0%2C1560%2C878&width=960)
