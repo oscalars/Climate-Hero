@@ -1,5 +1,11 @@
-# naboo
-# best planet!
-<p align="center">
-  <img width="832" height="468" src="https://lumiere-a.akamaihd.net/v1/images/databank_naboon1starfighter_01_169_26691adf.jpeg?region=0%2C0%2C1560%2C878&width=960">
-</p>
+# Climate Hero by Naboo
+
+## 🗓 Jira
+
+In this project we use Jira as our planning tool. 
+
+Link to our scrum board https://teamnaboo.atlassian.net/jira/software/projects/TN/boards/2
+
+## 🎨 Figma
+
+Link to our figma mockup for the application [https://www.figma.com/file/ILefwStNqqMw6vb9Mr5sYU/Climate-Hero-2?node-id=0%3A1](https://www.figma.com/file/ILefwStNqqMw6vb9Mr5sYU/Climate-Hero-2?node-id=0%3A1)
