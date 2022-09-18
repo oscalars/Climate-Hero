@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -32,8 +34,20 @@ public class SecondFragment extends Fragment {
         binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+                //NavHostFragment.findNavController(SecondFragment.this)
+                  //      .navigate(R.id.action_SecondFragment_to_FirstFragment);
+
+                String text = String.valueOf(binding.inputText.getText());
+                String defaultBin = "organic waste";
+                binding.textView.setText(new StringBuilder().append("Recycle ").append(text).append(" in: ").append(defaultBin).toString());
+                binding.inputText.setText("");
+            }
+        });
+
+        binding.button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.textView.setText("");
             }
         });
     }
