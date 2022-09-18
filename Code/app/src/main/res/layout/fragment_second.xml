@@ -40,9 +40,9 @@
         android:id="@+id/inputText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
         android:layout_marginTop="256dp"
         android:hint="What item do you want to recycle?"
+        android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
