@@ -22,7 +22,19 @@
         tools:layout="@layout/fragment_second">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            android:id="@+id/action_SecondFragment_to_SuggestionFragment"
+            app:destination="@id/SuggestionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SuggestionFragment"
+        android:name="com.example.climatehero.SuggestionFragment"
+        android:label="@string/suggestion_fragment_label"
+        tools:layout="@layout/fragment_suggestion">
+
+        <action
+            android:id="@+id/action_Suggestion_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+
 </navigation>
