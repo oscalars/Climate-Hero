@@ -10,14 +10,14 @@
         android:id="@+id/suggestionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="236dp"
-        android:gravity="center"
+        android:layout_marginTop="232dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Thrown the Banana in the food waste bin!"
+        android:gravity="center"
+        android:text=""
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
