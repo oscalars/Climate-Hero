@@ -1,32 +1,25 @@
-package com.example.climatehero;
+package com.example.climatehero.View;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.climatehero.databinding.FragmentSecondBinding;
+import com.example.climatehero.R;
+import com.example.climatehero.ViewModel.ItemViewModel;
 import com.example.climatehero.databinding.FragmentSuggestionBinding;
 
 
 public class SuggestionFragment extends Fragment {
 
     private FragmentSuggestionBinding binding;
-    private itemViewModel viewModel;
+    private ItemViewModel viewModel;
 
     @Override
     public View onCreateView(
@@ -41,7 +34,7 @@ public class SuggestionFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        viewModel = new ViewModelProvider(requireActivity()).get(itemViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(ItemViewModel.class);
 
         binding.buttonReturn.setOnClickListener(new View.OnClickListener() {
             @Override

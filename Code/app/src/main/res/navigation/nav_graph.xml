@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.climatehero.FirstFragment"
+        android:name="com.example.climatehero.View.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.climatehero.SecondFragment"
+        android:name="com.example.climatehero.View.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/SuggestionFragment"
-        android:name="com.example.climatehero.SuggestionFragment"
+        android:name="com.example.climatehero.View.SuggestionFragment"
         android:label="@string/suggestion_fragment_label"
         tools:layout="@layout/fragment_suggestion">
 

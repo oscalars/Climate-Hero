@@ -1,4 +1,4 @@
-package com.example.climatehero;
+package com.example.climatehero.ViewModel;
 
 import android.graphics.Bitmap;
 

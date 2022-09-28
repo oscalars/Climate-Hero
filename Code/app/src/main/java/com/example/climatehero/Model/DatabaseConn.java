@@ -1,4 +1,4 @@
-package com.example.climatehero;
+package com.example.climatehero.Model;
 
 import java.sql.*;
 
