@@ -1,8 +1,8 @@
-package com.example.climatehero;
+package com.example.climatehero.ViewModel;
 
 import androidx.lifecycle.ViewModel;
 
-public class itemViewModel extends ViewModel {
+public class ItemViewModel extends ViewModel {
 
     private String item;
 
