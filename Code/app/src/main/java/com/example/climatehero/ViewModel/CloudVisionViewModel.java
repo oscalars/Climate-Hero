@@ -4,10 +4,14 @@ import android.graphics.Bitmap;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.climatehero.Model.CloudVisionRequest;
+
+import java.util.List;
+
 public class CloudVisionViewModel extends ViewModel {
 
     private Bitmap photo;
-    private String recognizedItem;
+    private List<String> recognizedItems;
 
     public Bitmap getPhoto() {
         return photo;
@@ -17,11 +21,13 @@ public class CloudVisionViewModel extends ViewModel {
         this.photo = photo;
     }
 
-    public String getRecognizedItem() {
-        return recognizedItem;
+    public void recognizeItem() {
+        //this.photo = bitmap;
+        CloudVisionRequest request = new CloudVisionRequest();
+        this.recognizedItems = request.labelRequest(photo);
     }
 
-    public void setRecognizedItem(String recognizedItem) {
-        this.recognizedItem = recognizedItem;
+    public List<String> getRecognizedItems() {
+        return recognizedItems;
     }
 }

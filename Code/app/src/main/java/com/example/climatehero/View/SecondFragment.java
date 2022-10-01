@@ -19,13 +19,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.climatehero.R;
-import com.example.climatehero.ViewModel.ItemViewModel;
+import com.example.climatehero.ViewModel.CloudVisionViewModel;
 import com.example.climatehero.databinding.FragmentSecondBinding;
+
+import java.util.List;
 
 public class SecondFragment extends Fragment {
 
     private FragmentSecondBinding binding;
-    private ItemViewModel viewModel;
+    private CloudVisionViewModel viewModel;
 
     @Override
     public View onCreateView(
@@ -40,8 +42,8 @@ public class SecondFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        viewModel = new ViewModelProvider(requireActivity()).get(ItemViewModel.class);
-
+        viewModel = new ViewModelProvider(requireActivity()).get(CloudVisionViewModel.class);
+        /*
         binding.suggestionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,7 +51,7 @@ public class SecondFragment extends Fragment {
                 NavHostFragment.findNavController(SecondFragment.this)
                         .navigate(R.id.action_SecondFragment_to_SuggestionFragment);
             }
-        });
+        }); */
 
         binding.resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +77,14 @@ public class SecondFragment extends Fragment {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent data = result.getData();
                         Bitmap photo = (Bitmap)data.getExtras().get("data");
-                        binding.capturedImage.setImageBitmap(photo);
+
+                        viewModel.setPhoto(photo);
+                        viewModel.recognizeItem();
+                        List<String> labels = viewModel.getRecognizedItems();
+                        //binding.capturedImage.setImageBitmap(photo);
+                        NavHostFragment.findNavController(SecondFragment.this)
+                                .navigate(R.id.action_SecondFragment_to_SuggestionFragment);
+
                     }
                 }
             });
