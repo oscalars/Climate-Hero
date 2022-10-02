@@ -42,14 +42,6 @@ public class FirstFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         cloudVisionViewModel = new ViewModelProvider(requireActivity()).get(CloudVisionViewModel.class);
 
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
-        });
-
         binding.openCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

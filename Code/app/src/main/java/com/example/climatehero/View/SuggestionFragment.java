@@ -12,14 +12,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.climatehero.R;
-import com.example.climatehero.ViewModel.ItemViewModel;
+import com.example.climatehero.ViewModel.CloudVisionViewModel;
+import com.example.climatehero.ViewModel.DatabaseViewModel;
 import com.example.climatehero.databinding.FragmentSuggestionBinding;
+
+import java.util.ArrayList;
 
 
 public class SuggestionFragment extends Fragment {
 
     private FragmentSuggestionBinding binding;
-    private ItemViewModel viewModel;
+    private CloudVisionViewModel viewModel;
+    private DatabaseViewModel databaseView;
+
 
     @Override
     public View onCreateView(
@@ -34,7 +39,9 @@ public class SuggestionFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        viewModel = new ViewModelProvider(requireActivity()).get(ItemViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(CloudVisionViewModel.class);
+        databaseView = new ViewModelProvider(requireActivity()).get(DatabaseViewModel.class);
+        databaseView.setDB(getContext());
 
         binding.buttonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,9 +52,10 @@ public class SuggestionFragment extends Fragment {
             }
         });
 
-        String item = viewModel.getItem();
-        String defaultBin = "organic waste bin";
-        binding.suggestionText.setText(new StringBuilder().append("Recycle the ").append(item).append(" in the ").append(defaultBin).toString());
+        ArrayList<String> items = viewModel.getResult();
+        databaseView.queryDb(items);
+        binding.suggestionText.setText(databaseView.getSuggestedBin());
+
     }
 
     @Override

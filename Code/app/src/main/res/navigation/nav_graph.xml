@@ -12,24 +12,11 @@
         tools:layout="@layout/fragment_first">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-        <action
             android:id="@+id/action_First_to_LoadingFragment"
             app:destination="@+id/LoadingFragment" />
 
     </fragment>
 
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.climatehero.View.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_SuggestionFragment"
-            app:destination="@id/SuggestionFragment" />
-    </fragment>
 
     <fragment
         android:id="@+id/LoadingFragment"
