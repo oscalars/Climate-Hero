@@ -48,8 +48,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_2, category);
         long result = db.insert(TABLE_NAME, null, contentValues);
         if(result == -1){
+            db.close();
             return false;
-        } else return true;
+        } else{
+            db.close();
+            return true;
+        }
     }
 
     public String getSuggestedBin(String object){
