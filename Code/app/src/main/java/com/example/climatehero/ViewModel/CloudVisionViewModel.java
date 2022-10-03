@@ -11,16 +11,16 @@ import java.util.ArrayList;
 
 public class CloudVisionViewModel extends ViewModel {
 
-    private Bitmap photo;
+    private Bitmap image;
     private ArrayList<String> result;
 
     public void recognizeImage() {
         CloudVisionModel cloudVisionModel = new CloudVisionModel();
-        result = cloudVisionModel.recognizeImage(photo);
+        result = cloudVisionModel.recognizeImage(image);
     }
 
-    public void setPhoto(Bitmap photo) {
-        this.photo = photo;
+    public void setImage(Bitmap image) {
+        this.image = image;
     }
 
     public ArrayList<String> getResult() {
