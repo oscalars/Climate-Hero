@@ -19,6 +19,9 @@ public class AddToDatabase {
             db.insertData("Plastic Bag" , "Plastic");
             db.insertData("Plastic" , "Plastic");
             db.insertData("Fork" , "Plastic");
+            db.insertData("Box" , "Plastic");
+            db.insertData("Food Storage Containers" , "Plastic");
+            db.insertData("Toy Block" , "Plastic");
 
             //Glass
             db.insertData("Glass Bottle" , "Glass");
@@ -36,6 +39,8 @@ public class AddToDatabase {
             db.insertData("Paper Product" , "Hard Paper");
             db.insertData("Shipping Box" , "Hard Paper");
             db.insertData("Packing Materials" , "Hard Paper");
+            db.insertData("Construction Paper" , "Hard Paper");
+            db.insertData("Paper Product" , "Hard Paper");
 
             //Recyclable
             db.insertData("Beverage Can" , "Recyclable");
@@ -44,6 +49,15 @@ public class AddToDatabase {
 
             //Residual
             db.insertData("Paper" , "Residual");
+            db.insertData("Paper Towel" , "Residual");
+            db.insertData("Dishware" , "Residual");
+            db.insertData("Household Supply" , "Residual");
+            db.insertData("Pen" , "Residual");
+            db.insertData("Pencil" , "Residual");
+            db.insertData("Ball Pen" , "Residual");
+            db.insertData("Writing Implement" , "Residual");
+            db.insertData("Brush" , "Residual");
+            db.insertData("Toy" , "Residual");
         }
 }
 
