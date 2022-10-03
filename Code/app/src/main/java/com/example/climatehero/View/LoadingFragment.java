@@ -46,6 +46,7 @@ public class LoadingFragment extends Fragment {
 
         executor.execute(() -> {
             cloudVisionViewModel.recognizeImage();
+            //when thread execution complete, navigate to suggestion fragment
             handler.post(() ->
                     NavHostFragment.findNavController(LoadingFragment.this)
                             .navigate(R.id.action_loading_to_suggestion));
