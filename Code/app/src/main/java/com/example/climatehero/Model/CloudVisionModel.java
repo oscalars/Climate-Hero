@@ -73,14 +73,14 @@ public class CloudVisionModel {
         batchAnnotateImagesRequest.setRequests(new ArrayList<AnnotateImageRequest>() {{
             AnnotateImageRequest annotateImageRequest = new AnnotateImageRequest();
 
-            Image encodedimage = new Image();
+            Image encodedImage = new Image();
 
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             photo.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
             byte[] imageBytes = byteArrayOutputStream.toByteArray();
 
-            encodedimage.encodeContent(imageBytes);
-            annotateImageRequest.setImage(encodedimage);
+            encodedImage.encodeContent(imageBytes);
+            annotateImageRequest.setImage(encodedImage);
 
             annotateImageRequest.setFeatures(new ArrayList<Feature>() {{
                 Feature labelDetection = new Feature();
