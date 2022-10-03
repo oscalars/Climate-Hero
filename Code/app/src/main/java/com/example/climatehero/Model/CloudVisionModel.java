@@ -35,29 +35,26 @@ public class CloudVisionModel {
     private static final String TAG = "CloudVisionModel";
 
     public ArrayList<String> recognizeImage(Bitmap photo) {
+        ArrayList<String> labels = new ArrayList<>();
+
         try {
-            Log.d(TAG, "inside try");
             Vision.Images.Annotate request = prepareAnnotationRequest(photo);
             BatchAnnotateImagesResponse response = request.execute();
 
-            ArrayList<String> labels = new ArrayList<>();
-
             for (AnnotateImageResponse res : response.getResponses()) {
                 for (EntityAnnotation annotation : res.getLabelAnnotations()) {
-                    Log.d(TAG, annotation.getDescription());
                     if (annotation.getScore() > 0.90) {
                         labels.add(annotation.getDescription());
                     }
                 }
             }
-
             Log.d(TAG, labels.toString());
-            return labels;
 
         } catch(IOException e) {
-            System.out.println(e.getMessage());
+            Log.e(TAG, e.getMessage());
         }
-        return new ArrayList<>();
+
+        return labels;
     }
 
 
