@@ -1,10 +1,4 @@
 package com.example.climatehero.Model;
-
-
-import android.graphics.Bitmap;
-import android.util.Log;
-
-
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
@@ -20,6 +14,12 @@ import com.google.api.services.vision.v1.model.EntityAnnotation;
 import com.google.api.services.vision.v1.model.Feature;
 import com.google.api.services.vision.v1.model.Image;
 import com.google.api.services.vision.v1.model.ImageSource;
+
+
+import android.graphics.Bitmap;
+import android.util.Log;
+
+
 
 import java.io.ByteArrayOutputStream;
 
