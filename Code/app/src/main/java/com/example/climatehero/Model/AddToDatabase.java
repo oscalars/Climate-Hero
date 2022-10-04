@@ -58,6 +58,25 @@ public class AddToDatabase {
             db.insertData("Writing Implement" , "Residual");
             db.insertData("Brush" , "Residual");
             db.insertData("Toy" , "Residual");
+
+            //Electronics
+            db.insertData("Technology" , "Electronics");
+            db.insertData("Computer" , "Electronics");
+            db.insertData("Electronic Device" , "Electronics");
+
+            //Recycle center
+            db.insertData("Wood" , "Recycle Center");
+            db.insertData("Furniture" , "Recycle Center");
+            db.insertData("Outdoor Furniture" , "Recycle Center");
+            db.insertData("Table" , "Recycle Center");
+            db.insertData("Chair" , "Recycle Center");
+            db.insertData("Shelf" , "Recycle Center");
+            db.insertData("Desk" , "Recycle Center");
+            db.insertData("Desk" , "Recycle Center");
+
+            //Batteries
+            db.insertData("Battery" , "Batteries");
+
         }
 }
 
