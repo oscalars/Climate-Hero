@@ -35,29 +35,26 @@ public class CloudVisionModel {
     private static final String TAG = "CloudVisionModel";
 
     public ArrayList<String> recognizeImage(Bitmap photo) {
+        ArrayList<String> labels = new ArrayList<>();
+
         try {
-            Log.d(TAG, "inside try");
             Vision.Images.Annotate request = prepareAnnotationRequest(photo);
             BatchAnnotateImagesResponse response = request.execute();
 
-            ArrayList<String> labels = new ArrayList<>();
-
             for (AnnotateImageResponse res : response.getResponses()) {
                 for (EntityAnnotation annotation : res.getLabelAnnotations()) {
-                    Log.d(TAG, annotation.getDescription());
                     if (annotation.getScore() > 0.90) {
                         labels.add(annotation.getDescription());
                     }
                 }
             }
-
             Log.d(TAG, labels.toString());
-            return labels;
 
         } catch(IOException e) {
-            System.out.println(e.getMessage());
+            Log.e(TAG, e.getMessage());
         }
-        return new ArrayList<>();
+
+        return labels;
     }
 
 
@@ -76,14 +73,14 @@ public class CloudVisionModel {
         batchAnnotateImagesRequest.setRequests(new ArrayList<AnnotateImageRequest>() {{
             AnnotateImageRequest annotateImageRequest = new AnnotateImageRequest();
 
-            Image encodedimage = new Image();
+            Image encodedImage = new Image();
 
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             photo.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
             byte[] imageBytes = byteArrayOutputStream.toByteArray();
 
-            encodedimage.encodeContent(imageBytes);
-            annotateImageRequest.setImage(encodedimage);
+            encodedImage.encodeContent(imageBytes);
+            annotateImageRequest.setImage(encodedImage);
 
             annotateImageRequest.setFeatures(new ArrayList<Feature>() {{
                 Feature labelDetection = new Feature();

@@ -29,7 +29,7 @@ public class DatabaseViewModel extends ViewModel {
                 for (String s : items) {
                         result = myDb.getSuggestedBin(s);
                         if (!Objects.equals(result, "NoMatch")) {
-                                suggestedBin = "Recycle the " + s + " in the " + result;
+                                suggestedBin = "Recycle the " + s.toLowerCase() + " in the " + result.toLowerCase();
                                 return;
                         } else {
                                 suggestedBin = "Sorry, we found no match for that item";

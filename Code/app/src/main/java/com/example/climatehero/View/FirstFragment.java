@@ -58,15 +58,15 @@ public class FirstFragment extends Fragment {
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent data = result.getData();
-                        Bitmap photo = (Bitmap)data.getExtras().get("data");
-                        cloudVisionViewModel.setPhoto(photo);
+                        Bitmap image = (Bitmap)data.getExtras().get("data");
+
+                        cloudVisionViewModel.setImage(image);
 
                         NavHostFragment.findNavController(FirstFragment.this)
                                 .navigate(R.id.action_First_to_LoadingFragment);
                     }
                 }
             });
-
 
     @Override
     public void onDestroyView() {
