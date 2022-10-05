@@ -1,46 +1,107 @@
 package com.example.climatehero.Model;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.*;
 
 public class DatabaseConn {
-    //Singleton
-    private static DatabaseConn instance;
-    private Connection c;
-
+    private Connection connection;
+    private final String host = "ec2-52-31-77-218.eu-west-1.compute.amazonaws.com";
+    private final String database = "d19gf5000719oa";
+    private final int port = 5432;
+    private final String user = "bhijhvrkthxfrr";
+    private final String pass = "1e9ebab668ba420a3cb71953bda55e4a0e74efc625bb295b920ca70a45241b16";
+    private String url = "jdbc:postgresql://%s:%d/%s";
+    private boolean status;
 
     /* These functions ensures singleton principle. */
-    private DatabaseConn() {
-        try {
-            String url = "jdbc:postgresql://ec2-34-242-84-130.eu-west-1.compute.amazonaws.com/d7eaj1ale21ggd";
-            String username = "awqmxaffunzrcw";
-            String password = "0a7bdd60f2d0269a6389d84c91f4f0fb0f0a6f132be701eb238f6629235076e9";
-            String url2;
-            this.c = DriverManager.getConnection(url, username, password);
+    public DatabaseConn() {
+                this.url = String.format(this.url, this.host, this.port, this.database);
+                connect();
+                //this.disconnect();
+                System.out.println("connection status:" + status);
+            }
 
-        } catch (Exception e) {
-            System.out.println("Error establishing database connection.");
+    private void connect()
+    {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    Class.forName("org.postgresql.Driver");
+                    connection = DriverManager.getConnection(url, user, pass);
+                    status = true;
+                    System.out.println("connected:" + status);
+                }
+                catch (Exception e)
+                {
+                    status = false;
+                    System.out.print(e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+        try
+        {
+            thread.join();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            this.status = false;
         }
     }
 
-    private static DatabaseConn getInstance() throws SQLException {
-        if (instance == null) {
-            instance = new DatabaseConn();
+    public Connection getExtraConnection()
+    {
+        Connection c = null;
+        try
+        {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection(url, user, pass);
         }
-        return instance;
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return c;
     }
 
-    public static String getBin(String label) {
-        try {
-            PreparedStatement ps = getInstance().c.prepareStatement("SELECT category FROM Classification WHERE keyword = ?");
-            ps.setString(1, label.toLowerCase());
-            ResultSet rs = ps.executeQuery();
-            rs.next();
-            String result = new String(rs.getBytes("category"));
-            return result;
+        public String getBin (String label) throws SQLException{
+            try {
+                PreparedStatement ps = connection.prepareStatement("SELECT category FROM Classification WHERE keyword = ?");
+                ps.setString(1, label);
+                ResultSet rs = ps.executeQuery();
+                rs.next();
+               return new String(rs.getBytes("category"));
 
-        } catch (SQLException e) {
-            //System.out.println("Error getting result from database.");
-            return "No result, throw in residual bin";
+
+            } catch (SQLException e) {
+               return "Error getting result from database.";
+            }
         }
     }
-}
+
+    /* To collect data from database use the code below*/
+/*
+   Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        DatabaseConn db = new DatabaseConn();
+                        System.out.println((db.getBin("Plastic")));
+                    } catch (Exception e) {
+                        System.out.print(e.getMessage());
+                        e.printStackTrace();
+                    }
+                }
+            });
+            thread.start();
+ */
+
+
+
+
