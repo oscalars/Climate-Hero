@@ -15,12 +15,13 @@ import java.util.ArrayList;
 @RunWith(AndroidJUnit4.class)
 public class DatabaseViewModelTest extends TestCase {
 
+    private DatabaseViewModel databaseViewModel = new DatabaseViewModel();
+    private Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+    private ArrayList<String> items = new ArrayList<>();
+
     @Test
     public void testQueryDbForFood() {
-        DatabaseViewModel databaseViewModel = new DatabaseViewModel();
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         databaseViewModel.setDB(appContext);
-        ArrayList<String> items = new ArrayList<>();
         items.add("Food");
         databaseViewModel.queryDb(items);
         assertEquals("Recycle the food in the compost.",
@@ -29,8 +30,6 @@ public class DatabaseViewModelTest extends TestCase {
 
     @Test
     public void testQueryDBForNoMatch() {
-        DatabaseViewModel databaseViewModel = new DatabaseViewModel();
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         databaseViewModel.setDB(appContext);
         ArrayList<String> items = new ArrayList<>();
         items.add("Koala");
