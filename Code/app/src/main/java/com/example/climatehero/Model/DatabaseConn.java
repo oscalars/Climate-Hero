@@ -2,40 +2,33 @@ package com.example.climatehero.Model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DatabaseConn {
     private Connection connection;
-    private final String host = "ec2-52-31-77-218.eu-west-1.compute.amazonaws.com";
-    private final String database = "d19gf5000719oa";
+    private final String host = "ec2-99-80-170-190.eu-west-1.compute.amazonaws.com";
+    private final String database = "d308splto5vvvc";
     private final int port = 5432;
-    private final String user = "bhijhvrkthxfrr";
-    private final String pass = "1e9ebab668ba420a3cb71953bda55e4a0e74efc625bb295b920ca70a45241b16";
+    private final String user = "lfuiispmmpadgv";
+    private final String pass = "d5d95c936b7a8ab806291aa3ff47a354719f58c69e10a389c4ff756eb6fde42a";
     private String url = "jdbc:postgresql://%s:%d/%s";
     private boolean status;
 
-    /* These functions ensures singleton principle. */
     public DatabaseConn() {
                 this.url = String.format(this.url, this.host, this.port, this.database);
                 connect();
-                //this.disconnect();
-                System.out.println("connection status:" + status);
             }
 
-    private void connect()
-    {
+    private void connect() {
         Thread thread = new Thread(new Runnable() {
             @Override
-            public void run()
-            {
-                try
-                {
+            public void run(){
+                try {
                     Class.forName("org.postgresql.Driver");
                     connection = DriverManager.getConnection(url, user, pass);
                     status = true;
-                    System.out.println("connected:" + status);
-                }
-                catch (Exception e)
-                {
+
+                } catch (Exception e) {
                     status = false;
                     System.out.print(e.getMessage());
                     e.printStackTrace();
@@ -43,64 +36,72 @@ public class DatabaseConn {
             }
         });
         thread.start();
-        try
-        {
+        try {
             thread.join();
-        }
-        catch (Exception e)
-        {
+
+        } catch (Exception e) {
             e.printStackTrace();
             this.status = false;
         }
     }
 
-    public Connection getExtraConnection()
-    {
+    public Connection getExtraConnection() {
         Connection c = null;
-        try
-        {
+        try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url, user, pass);
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
 
-        return c;
+        } catch(Exception e) {
+            e.printStackTrace();
+        } return c;
     }
 
-        public String getBin (String label) throws SQLException{
+    //This could be used for direct query of cloud database
+    public String getBin (String label) throws SQLException{
+        try {
+            PreparedStatement ps = connection.prepareStatement("SELECT category FROM Classification WHERE keyword = ?");
+            ps.setString(1, label);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return new String(rs.getBytes("category"));
+
+        } catch (SQLException e) {
+               return "Error getting result from database.";
+        }
+    }
+
+    public ArrayList<String> getWholeDb() throws SQLException{
+        try {
+            ArrayList<String> db = new ArrayList<>();
+            PreparedStatement ps = connection.prepareStatement("SELECT keyword, category FROM Classification");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                db.add(new String(rs.getBytes("keyword")));
+                db.add(new String(rs.getBytes("category")));
+            }
+            return db;
+
+        } catch (SQLException e) {
+            ArrayList<String> errorDB = new ArrayList<>();
+            errorDB.add("Bad_request");
+            return errorDB;
+        }
+    }
+
+        public int getDatabaseVersion() throws SQLException{
             try {
-                PreparedStatement ps = connection.prepareStatement("SELECT category FROM Classification WHERE keyword = ?");
-                ps.setString(1, label);
+                PreparedStatement ps = connection.prepareStatement("SELECT db_version FROM Classification");
                 ResultSet rs = ps.executeQuery();
                 rs.next();
-               return new String(rs.getBytes("category"));
 
+                return rs.getInt("db_version");
 
             } catch (SQLException e) {
-               return "Error getting result from database.";
+                System.out.println("Error in getDatabaseVersion");
+                return -1;
             }
         }
-    }
-
-    /* To collect data from database use the code below*/
-/*
-   Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        DatabaseConn db = new DatabaseConn();
-                        System.out.println((db.getBin("Plastic")));
-                    } catch (Exception e) {
-                        System.out.print(e.getMessage());
-                        e.printStackTrace();
-                    }
-                }
-            });
-            thread.start();
- */
+}
 
 
 

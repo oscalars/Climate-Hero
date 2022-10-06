@@ -51,7 +51,6 @@ public class SuggestionFragment extends Fragment {
 
             }
         });
-
         ArrayList<String> items = viewModel.getResult();
         databaseView.queryDb(items);
         binding.suggestionText.setText(databaseView.getSuggestedBin());
