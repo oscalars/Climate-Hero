@@ -78,7 +78,6 @@ public class DatabaseConn {
                 rs.next();
                return new String(rs.getBytes("category"));
 
-
             } catch (SQLException e) {
                return "Error getting result from database.";
             }
