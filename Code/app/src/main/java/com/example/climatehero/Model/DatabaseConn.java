@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 public class DatabaseConn {
     private Connection connection;
-    private final String host = "ec2-99-80-170-190.eu-west-1.compute.amazonaws.com";
-    private final String database = "d308splto5vvvc";
+    private final String host = "ec2-176-34-234-47.eu-west-1.compute.amazonaws.com";
+    private final String database = "de8p33ruqinm0a";
     private final int port = 5432;
-    private final String user = "lfuiispmmpadgv";
-    private final String pass = "d5d95c936b7a8ab806291aa3ff47a354719f58c69e10a389c4ff756eb6fde42a";
+    private final String user = "xcjrhryhuptyqz";
+    private final String pass = "af46226d608e82d4c31344416df93de3b2c2e7695d3f53fb395f7000f054751f";
     private String url = "jdbc:postgresql://%s:%d/%s";
     private boolean status;
 
