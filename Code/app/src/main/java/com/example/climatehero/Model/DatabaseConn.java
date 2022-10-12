@@ -101,6 +101,7 @@ public class DatabaseConn {
                 return -1;
             }
         }
+        //this could be used to get a random text directly from cloud
     public ArrayList<String> getRfact() throws SQLException{
         try {
             ArrayList<String> Rfact = new ArrayList<>();
