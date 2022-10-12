@@ -101,6 +101,23 @@ public class DatabaseConn {
                 return -1;
             }
         }
+    public ArrayList<String> getRfact() throws SQLException{
+        try {
+            ArrayList<String> Rfact = new ArrayList<>();
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM facts OFFSET floor(random() * (SELECT COUNT(*) FROM facts))\n" +
+                    "LIMIT 1;");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Rfact.add(new String(rs.getBytes("fact")));
+            }
+            return Rfact;
+
+        } catch (SQLException e) {
+            ArrayList<String> errorRfact = new ArrayList<>();
+            errorRfact.add("Bad_request");
+            return errorRfact;
+        }
+    }
 }
 
 
