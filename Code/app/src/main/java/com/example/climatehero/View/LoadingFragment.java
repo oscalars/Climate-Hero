@@ -47,13 +47,20 @@ public class LoadingFragment extends Fragment{
         final Executor executor = Executors.newSingleThreadExecutor();
         final Handler handler = new Handler(Looper.getMainLooper());
 
+        binding.continueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(LoadingFragment.this)
+                        .navigate(R.id.action_loading_to_suggestion);
+            }
+        });
+
         executor.execute(() -> {
             cloudVisionViewModel.recognizeImage();
-                handler.post(() ->
-                        NavHostFragment.findNavController(LoadingFragment.this)
-                                .navigate(R.id.action_loading_to_suggestion));
-
-            //when thread execution complete, navigate to suggestion fragment
+                handler.post(() -> {
+                            binding.gifImageView.setVisibility(View.GONE);
+                            binding.continueButton.setVisibility(View.VISIBLE);
+                        });
         });
     }
     @Override
