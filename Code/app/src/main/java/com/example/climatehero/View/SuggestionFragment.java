@@ -23,7 +23,7 @@ public class SuggestionFragment extends Fragment {
 
     private FragmentSuggestionBinding binding;
     private CloudVisionViewModel viewModel;
-    private DatabaseViewModel databaseView;
+    private DatabaseViewModel databaseViewModel;
 
 
     @Override
@@ -40,8 +40,7 @@ public class SuggestionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(CloudVisionViewModel.class);
-        databaseView = new ViewModelProvider(requireActivity()).get(DatabaseViewModel.class);
-        databaseView.setDB(getContext());
+        databaseViewModel = new ViewModelProvider(requireActivity()).get(DatabaseViewModel.class);
 
         binding.buttonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,8 +51,8 @@ public class SuggestionFragment extends Fragment {
             }
         });
         ArrayList<String> items = viewModel.getResult();
-        databaseView.queryDb(items);
-        binding.suggestionText.setText(databaseView.getSuggestedBin());
+        databaseViewModel.queryDb(items);
+        binding.suggestionText.setText(databaseViewModel.getSuggestedBin());
 
     }
 

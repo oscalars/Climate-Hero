@@ -28,12 +28,14 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.climatehero.R;
 import com.example.climatehero.ViewModel.CloudVisionViewModel;
+import com.example.climatehero.ViewModel.DatabaseViewModel;
 import com.example.climatehero.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
     private CloudVisionViewModel cloudVisionViewModel;
+    private DatabaseViewModel databaseViewModel;
 
     @Override
     public View onCreateView(
@@ -49,6 +51,8 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         cloudVisionViewModel = new ViewModelProvider(requireActivity()).get(CloudVisionViewModel.class);
+        databaseViewModel = new ViewModelProvider(requireActivity()).get(DatabaseViewModel.class);
+        databaseViewModel.setDB(getContext());
 
         binding.openCamera.setOnClickListener(new View.OnClickListener() {
             @Override

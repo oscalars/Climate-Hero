@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import com.example.climatehero.MainActivity;
 import com.example.climatehero.ViewModel.CloudVisionViewModel;
 import com.example.climatehero.R;
+import com.example.climatehero.ViewModel.DatabaseViewModel;
 import com.example.climatehero.databinding.FragmentLoadingBinding;
 
 import java.util.concurrent.Executor;
@@ -29,6 +30,7 @@ public class LoadingFragment extends Fragment{
 
     private FragmentLoadingBinding binding;
     private CloudVisionViewModel cloudVisionViewModel;
+    private DatabaseViewModel databaseViewModel;
 
     @Override
     public View onCreateView(
@@ -44,9 +46,11 @@ public class LoadingFragment extends Fragment{
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         cloudVisionViewModel = new ViewModelProvider(requireActivity()).get(CloudVisionViewModel.class);
+        databaseViewModel = new ViewModelProvider(requireActivity()).get(DatabaseViewModel.class);
         final Executor executor = Executors.newSingleThreadExecutor();
         final Handler handler = new Handler(Looper.getMainLooper());
 
+        binding.factText.setText(databaseViewModel.getFact());
         binding.continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +64,7 @@ public class LoadingFragment extends Fragment{
                 handler.post(() -> {
                             binding.gifImageView.setVisibility(View.GONE);
                             binding.continueButton.setVisibility(View.VISIBLE);
+                            binding.continueButton.setClickable(true);
                         });
         });
     }

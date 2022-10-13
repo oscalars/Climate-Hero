@@ -9,31 +9,40 @@ import com.example.climatehero.Model.AddFromCloudDatabase;
 import com.example.climatehero.Model.AddToDatabase;
 import com.example.climatehero.Model.DatabaseConn;
 import com.example.climatehero.Model.DatabaseHelper;
+import com.example.climatehero.R;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 
 public class DatabaseViewModel extends ViewModel {
 
         private DatabaseHelper myDb;
         private String suggestedBin;
+        private String fact;
         private int cloudDbVersion;
         private int localDbVersion;
 
         public void setDB(Context context){
-                myDb = new DatabaseHelper(context);
-                localDbVersion = 1;//myDb.getVersionFromTable();
+                if(myDb == null) {
 
-                if(localDbVersion == 1){
-                        myDb.clearIfExist();
-                        AddToDatabase.add(myDb);
-                }
 
-                if(checkDbVersion()){
-                        myDb.clearIfExist();
-                        ArrayList<String> cloudResult = getCloudDB();
-                        AddFromCloudDatabase.add(myDb, cloudResult, cloudDbVersion);
+                        myDb = new DatabaseHelper(context);
+                        localDbVersion = myDb.getVersionFromTable();
+
+                        if (localDbVersion == 1) {
+                                myDb.clearIfExist();
+                                AddToDatabase.add(myDb);
+                        }
+
+                        if (checkDbVersion()) { /* If newer db in cloud, download and replace the local db */
+                                myDb.clearIfExist();
+                                ArrayList<String> fact = getCloudDBFacts();
+                                AddFromCloudDatabase.addToFacts(myDb, fact);
+                                ArrayList<String> classification = getCloudDBClassification();
+                                AddFromCloudDatabase.addToClassification(myDb, classification, cloudDbVersion);
+                        }
                 }
         }
 
@@ -52,8 +61,26 @@ public class DatabaseViewModel extends ViewModel {
                 }
         }
 
+        private void queryDbFacts() {
+                ArrayList<String> facts;
+                facts = myDb.getFact();
+                Random random = new Random();
+                if(facts.get(0) == "NoMatch"){
+                        fact = "You are a Climate Hero!!";
+                } else if (facts.size() == 1){
+                        fact = facts.get(0);
+                } else {
+                        fact = facts.get(random.nextInt(facts.size()));
+                }
+        }
+
         public String getSuggestedBin(){
                 return suggestedBin;
+        }
+
+        public String getFact(){
+                queryDbFacts();
+                return fact;
         }
 
         //If updated database in cloud, use that one, if not, use local database
@@ -85,8 +112,8 @@ public class DatabaseViewModel extends ViewModel {
                 } else return false;
         }
 
-        //Get the whole database from cloud to replace the local database
-        public ArrayList<String> getCloudDB() {
+        //Get the whole table Classification from cloud to replace the local database
+        public ArrayList<String> getCloudDBClassification() {
                 final ArrayList<String>[] cloudDB = new ArrayList[]{new ArrayList<>()};
                 Thread thread = new Thread(new Runnable() {
 
@@ -94,7 +121,34 @@ public class DatabaseViewModel extends ViewModel {
                         public void run() {
                                 try {
                                         DatabaseConn db = new DatabaseConn();
-                                        cloudDB[0] = db.getWholeDb();
+                                        cloudDB[0] = db.getClassification();
+
+                                } catch (Exception e) {
+                                        System.out.print(e.getMessage());
+                                        e.printStackTrace();
+                                }
+                        }
+                });
+                thread.start();
+                try {
+                        thread.join();
+                } catch (Exception e) {
+                        System.out.print(e.getMessage());
+                        e.printStackTrace();
+                }
+                return cloudDB[0];
+        }
+
+        //Get the whole table facts from cloud to replace the local database
+        public ArrayList<String> getCloudDBFacts() {
+                final ArrayList<String>[] cloudDB = new ArrayList[]{new ArrayList<>()};
+                Thread thread = new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                                try {
+                                        DatabaseConn db = new DatabaseConn();
+                                        cloudDB[0] = db.getFacts();
 
                                 } catch (Exception e) {
                                         System.out.print(e.getMessage());

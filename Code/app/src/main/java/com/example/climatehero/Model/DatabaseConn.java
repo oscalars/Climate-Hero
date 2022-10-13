@@ -70,7 +70,7 @@ public class DatabaseConn {
         }
     }
 
-    public ArrayList<String> getWholeDb() throws SQLException{
+    public ArrayList<String> getClassification() throws SQLException{
         try {
             ArrayList<String> db = new ArrayList<>();
             PreparedStatement ps = connection.prepareStatement("SELECT keyword, category FROM Classification");
@@ -88,30 +88,48 @@ public class DatabaseConn {
         }
     }
 
-        public int getDatabaseVersion() throws SQLException{
-            try {
-                PreparedStatement ps = connection.prepareStatement("SELECT db_version FROM Classification");
-                ResultSet rs = ps.executeQuery();
-                rs.next();
-
-                return rs.getInt("db_version");
-
-            } catch (SQLException e) {
-                System.out.println("Error in getDatabaseVersion");
-                return -1;
+    public ArrayList<String> getFacts() throws SQLException{
+        try {
+            ArrayList<String> rFact = new ArrayList<>();
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM facts");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                rFact.add(new String(rs.getBytes("fact")));
             }
+            return rFact;
+
+        } catch (SQLException e) {
+            ArrayList<String> errorDB = new ArrayList<>();
+            errorDB.add("Bad_request");
+            return errorDB;
         }
-        //this could be used to get a random text directly from cloud
+    }
+
+    public int getDatabaseVersion() throws SQLException{
+        try {
+            PreparedStatement ps = connection.prepareStatement("SELECT db_version FROM Classification");
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+
+            return rs.getInt("db_version");
+
+        } catch (SQLException e) {
+            System.out.println("Error in getDatabaseVersion");
+            return -1;
+        }
+    }
+
+    //this could be used to get a random text directly from cloud
     public ArrayList<String> getRfact() throws SQLException{
         try {
-            ArrayList<String> Rfact = new ArrayList<>();
+            ArrayList<String> rFact = new ArrayList<>();
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM facts OFFSET floor(random() * (SELECT COUNT(*) FROM facts))\n" +
                     "LIMIT 1;");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                Rfact.add(new String(rs.getBytes("fact")));
+                rFact.add(new String(rs.getBytes("fact")));
             }
-            return Rfact;
+            return rFact;
 
         } catch (SQLException e) {
             ArrayList<String> errorRfact = new ArrayList<>();
@@ -120,7 +138,3 @@ public class DatabaseConn {
         }
     }
 }
-
-
-
-

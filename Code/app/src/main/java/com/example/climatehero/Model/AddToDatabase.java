@@ -5,7 +5,7 @@ public class AddToDatabase {
         public static void add(DatabaseHelper db){
 
             //Database version
-            db.insertData("database" , "data" , 1);
+            db.insertClassificationData("database" , "data" , 1);
         }
 }
 
