@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 @RunWith(AndroidJUnit4.class)
 public class DatabaseViewModelTest extends TestCase {
@@ -37,4 +38,19 @@ public class DatabaseViewModelTest extends TestCase {
         assertEquals("Sorry, we found no match for that item.",
                 databaseViewModel.getSuggestedBin());
     }
+
+    @Test
+    public void testRandomFact() {
+        //testing randomness of getFact method
+        databaseViewModel.setDB(appContext);
+
+        String fact = databaseViewModel.getFact();
+        String fact2 = databaseViewModel.getFact();
+
+        System.out.println(fact);
+        System.out.println(fact2);
+
+        assertNotSame(fact2, fact);
+    }
+
 }
