@@ -1,20 +1,19 @@
-# README
-
+#
 # Climate Hero by Naboo
 
 ## 🔍 Who’s who
 
-This project was created by group Naboo for the course DAT257 Agile software project management at Chalmers University of Technology. The team consisted of,
+This project was created by group Naboo for the course DAT257 Agile software project management at Chalmers University of Technology. The team consisted of
 
 - Robert Nilsson - [robert-nilsson](https://github.com/robert-nilsson)
 - Oscar Larsson - [oscalars](https://github.com/oscalars)
-- Pierre Oscarsson - [Laxi-luke](https://github.com/Laxi-luke)
+- Pierre Oskarsson - [Laxi-luke](https://github.com/Laxi-luke)
 - Johan Bergfalk - [johanbergfalk](https://github.com/johanbergfalk/)
 - Sebastian Sela - [sebastiansela](https://github.com/sebastiansela)
 
 ## 📍 Github structure
 
-This github repository contains two folders, [Code](https://github.com/johanbergfalk/naboo/tree/main/Code) and [Documentation](https://github.com/johanbergfalk/naboo/tree/main/Documentation). 
+This github repository contains two folders, [Code](https://github.com/johanbergfalk/naboo/tree/main/Code) and [Documentation](https://github.com/johanbergfalk/naboo/tree/main/Documentation) 
 
 Code contains the source code for the application as well as JUnit tests. 
 
