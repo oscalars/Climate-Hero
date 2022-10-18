@@ -53,4 +53,5 @@ public class DatabaseViewModelTest extends TestCase {
         assertNotSame(fact2, fact);
     }
 
+
 }
