@@ -45,16 +45,20 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/header"
             android:layout_width="362dp"
             android:layout_height="56dp"
+            android:fontFamily="@font/poppins_bold"
             android:paddingLeft="24dp"
             android:paddingTop="24dp"
-            android:text="Climate fact:"
-            android:fontFamily="@font/poppins_bold"
+            android:text="Climate fact"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/factText"
+            app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteY="0dp" />
 
         <TextView
@@ -66,13 +70,13 @@
             android:paddingBottom="24dp"
             android:text="More than 52 million tons of paper products were recycled in 2018. That’s roughly the same weight as almost 350,000 blue whales."
             android:textColor="@color/white"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/poppins_regular"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/gifImageView"
+            app:layout_constraintBottom_toTopOf="@+id/header"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/header"
             app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
