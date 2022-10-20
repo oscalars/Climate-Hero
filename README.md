@@ -9,7 +9,7 @@ This project was created by group Naboo for the course DAT257 Agile software pro
 - Oscar Larsson - [oscalars](https://github.com/oscalars)
 - Pierre Oskarsson - [Laxi-luke](https://github.com/Laxi-luke)
 - Johan Bergfalk - [johanbergfalk](https://github.com/johanbergfalk/)
-- Sebastian Sela - [sebastiansela](https://github.com/sebastiansela)
+- Sebastian Sela - [sebastiansela](https://github.com/sebastiansela), [selas01](https://github.com/selas01)
 
 ## 📍 Github structure
 
