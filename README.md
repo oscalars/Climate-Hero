@@ -6,12 +6,15 @@
 The goal of the application is to spread the importance of recycling, for a more sustainable future, and work toward climate goal 13 - climate action. The primary user group in mind is kids. To aid in recycling the user takes a photo of the items to be recycled and the application will output which waste category to throw the waste in. Since the app's slogan is to “make waste zero” we are creating value for companies dealing with recycling since it increases the chances that items are actually recycled in the correct bin.
 
 ## 📚 Table of contents
-1. Who's who
-2. Github structure
-3. Jira
-4. Figma
-5. Build and run the application
-## 🔍 Who’s who 
+<ol>
+    <li><a href="#who"> 🔍 Who’s who</a></li>
+    <li><a href="#structure"> 📍 Github structure</a></li>
+    <li><a href="#jira"> 🗓 Jira</a></li>
+    <li><a href="#figma"> 🎨 Figma</a></li>
+    <li><a href="#buildandrun">  🛠 Build and run the application </a></li>
+
+  </ol>
+<h2 id="who" /> 🔍 Who’s who</h2>
 
 This project was created by group Naboo for the course DAT257 Agile software project management at Chalmers University of Technology. The team consisted of /
 
@@ -21,7 +24,7 @@ This project was created by group Naboo for the course DAT257 Agile software pro
 - Johan Bergfalk - [johanbergfalk](https://github.com/johanbergfalk/)
 - Sebastian Sela - [sebastiansela](https://github.com/sebastiansela), [selas01](https://github.com/selas01)
 
-## 📍 Github structure
+<h2 id="structure">  📍 Github structure</h2>
 
 This github repository contains two folders, [Code](https://github.com/johanbergfalk/naboo/tree/main/Code) and [Documentation](https://github.com/johanbergfalk/naboo/tree/main/Documentation)
 
@@ -38,17 +41,17 @@ The documentation folder also contains
 - Project scope
 - Social contract
 
-## 🗓 Jira
+<h2 id="jira">  🗓 Jira</h2>
 
 In this project we use Jira as our planning tool
 
 Link to our scrum board [https://teamnaboo.atlassian.net/jira/software/projects/TN/boards/2](https://teamnaboo.atlassian.net/jira/software/projects/TN/boards/2/backlog)
 
-## 🎨 Figma
+<h2 id="figma">  🎨 Figma</h2>
 
 Link to our Figma mockup for the application [https://www.figma.com/file/ILefwStNqqMw6vb9Mr5sYU/Climate-Hero-2?node-id=0%3A1](https://www.figma.com/file/ILefwStNqqMw6vb9Mr5sYU/Climate-Hero-2?node-id=0%3A1)
 
-## 🛠 Build and run the application
+<h2 id="buildandrun">  🛠 Build and run the application </h2>
 
 1. Download [Android Studio](https://developer.android.com/studio) and install it
 2. Clone this repository and open in Android Studio
