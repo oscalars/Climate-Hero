@@ -55,7 +55,7 @@ Link to our Figma mockup for the application [https://www.figma.com/file/ILefwSt
 
 1. Download [Android Studio](https://developer.android.com/studio) and install it
 2. Clone this repository and open in Android Studio
-3. In the toolbar, select your app from the run configurations drop-down menu
+3. In the toolbar, select the app from the run configurations drop-down menu
 4. From the target device drop-down menu, select the device that you want to run your app on
     
     ![https://developer.android.com/static/studio/images/run/deploy-run-app.png](https://developer.android.com/static/studio/images/run/deploy-run-app.png)
