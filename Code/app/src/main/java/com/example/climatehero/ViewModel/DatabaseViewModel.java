@@ -27,7 +27,6 @@ public class DatabaseViewModel extends ViewModel {
         public void setDB(Context context){
                 if(myDb == null) {
 
-
                         myDb = new DatabaseHelper(context);
                         localDbVersion = myDb.getVersionFromTable();
 
@@ -166,5 +165,3 @@ public class DatabaseViewModel extends ViewModel {
                 return cloudDB[0];
         }
 }
-
-
