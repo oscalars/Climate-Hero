@@ -9,8 +9,8 @@ public class DatabaseConn {
     private final String host = "ec2-54-170-90-26.eu-west-1.compute.amazonaws.com";
     private final String database = "dbre3aieuso0eh";
     private final int port = 5432;
-    private final String user = "nuqeqfranikqjz";
-    private final String pass = "0eff479f4f8ae237eb0afee739464a83436982f739b64376484115036a844efb";
+    private final String user = "";
+    private final String pass = "";
     private String url = "jdbc:postgresql://%s:%d/%s";
     private boolean status;
 
