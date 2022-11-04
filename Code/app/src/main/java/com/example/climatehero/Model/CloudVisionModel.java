@@ -62,7 +62,7 @@ public class CloudVisionModel {
         HttpTransport httpTransport = AndroidHttp.newCompatibleTransport();
         JsonFactory jsonFactory = GsonFactory.getDefaultInstance();
 
-        VisionRequestInitializer requestInitializer = new VisionRequestInitializer("AIzaSyDKTEftqwtRnLeRCDH81mVy966Q6dI8e5M");
+        VisionRequestInitializer requestInitializer = new VisionRequestInitializer("");
 
         Vision.Builder builder = new Vision.Builder(httpTransport, jsonFactory, null);
         builder.setVisionRequestInitializer(requestInitializer);
